@@ -19,9 +19,9 @@ var myGameArea = {
         this.canvas.height = 270;
         this.context = this.canvas.getContext("2d");
         this.canvas.addEventListener('click', function(e) {
-            var rect = collides(myGamePieces, e.offsetX, e.offsetY);
-            if (rect !== false) {
-                myGamePieces.splice(rect, 1)
+            var index = checkIfHit(myGamePieces, e.offsetX, e.offsetY);
+            if (index !== false) {
+                myGamePieces.splice(index, 1)
                 numOfHitPieces++;
             }
         }, false);
@@ -102,17 +102,19 @@ function updateGameArea() {
 }
 
 
-function collides(rects, x, y) {
-    var isCollision = false;
+function checkIfHit(rects, x, y) {
+    let isHit = false;
     for (let i = 0; i < rects.length; i++) {
-        var left = rects[i].x-rects[i].width/2, right = rects[i].x+rects[i].width/2;
-        var top = rects[i].y-rects[i].height/2, bottom = rects[i].y+rects[i].height/2;
+        let left = rects[i].x-rects[i].width/2;
+        let right = rects[i].x+rects[i].width/2;
+        let top = rects[i].y-rects[i].height/2;
+        let bottom = rects[i].y+rects[i].height/2;
         if (right >= x
             && left <= x
             && bottom >= y
             && top <= y) {
-            isCollision = i;
+            isHit = i;
         }
     }
-    return isCollision;
+    return isHit;
 }
