@@ -36,11 +36,12 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.font = "18px Arial";
         this.context.textAlign = "right";
-        this.context.strokeText(`Number of targets: ${numOfPieces}`, 480, 15);
-        this.context.strokeText(`Number of hit targets: ${numOfHitPieces}`, 480, 33);
+        this.context.fillText(`Ukupan broj meta: ${numOfPieces}`, 480, 15);
+        this.context.fillText(`Broj pogođenih meta: ${numOfHitPieces}`, 480, 33);
         if(myGamePieces.length == 0){
+            this.context.font = "25px Arial";
             this.context.textAlign = "center";
-            this.context.strokeText('You win!', 240, 140);
+            this.context.strokeText('Pobijedili ste!', 240, 140);
         }
     },
 };

@@ -6,7 +6,7 @@ var path = require('path');
 var logger = require('morgan');
 var dotenv = require('dotenv');
 
-const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const externalUrl = process.env.RENDER_EXTERNAL_URL || undefined;
 const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 4092;
 
 dotenv.config();
