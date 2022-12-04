@@ -4,9 +4,9 @@ let numOfHitPieces = 0;
 
 function startGame() {
     for(let i = 0; i < numOfPieces; i++) {
-        let randomX = Math.floor(Math.random() * (449 - 5)) + 5;
-        let randomY = Math.floor(Math.random() * (239 - 5)) + 5;
-        myGamePieces[i] = new component(30, 30, "red", randomX, randomY);
+        let randomX = Math.floor(Math.random() * (599 - 5)) + 5;
+        let randomY = Math.floor(Math.random() * (389 - 5)) + 5;
+        myGamePieces[i] = new component(50, 50, "red", randomX, randomY);
     }
     myGameArea.start();
 }
@@ -15,8 +15,8 @@ var myGameArea = {
     canvas: document.createElement("canvas"),
     start: function () {
         this.canvas.id = "myGameCanvas";
-        this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.width = 600;
+        this.canvas.height = 390;
         this.context = this.canvas.getContext("2d");
         this.canvas.addEventListener('click', function(e) {
             var index = checkIfHit(myGamePieces, e.offsetX, e.offsetY);
@@ -34,15 +34,6 @@ var myGameArea = {
     },
     clear: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.context.font = "18px Arial";
-        this.context.textAlign = "right";
-        this.context.fillText(`Ukupan broj meta: ${numOfPieces}`, 480, 15);
-        this.context.fillText(`Broj pogođenih meta: ${numOfHitPieces}`, 480, 33);
-        if(myGamePieces.length == 0){
-            this.context.font = "25px Arial";
-            this.context.textAlign = "center";
-            this.context.strokeText('Pobijedili ste!', 240, 140);
-        }
     },
 };
 
@@ -98,6 +89,15 @@ function updateGameArea() {
     for(let i = 0; i < myGamePieces.length; i++) {
         myGamePieces[i].newPos();
         myGamePieces[i].update();
+    }
+    myGameArea.context.font = "18px Arial";
+    myGameArea.context.textAlign = "right";
+    myGameArea.context.fillText(`Ukupan broj meta: ${numOfPieces}`, 600, 15);
+    myGameArea.context.fillText(`Broj pogođenih meta: ${numOfHitPieces}`, 600, 33);
+    if(myGamePieces.length == 0){
+        myGameArea.context.font = "25px Arial";
+        myGameArea.context.textAlign = "center";
+        myGameArea.context.strokeText('Pobijedili ste!', 300, 195);
     }
 }
 
